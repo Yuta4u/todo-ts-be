@@ -17,25 +17,11 @@ db.connect((err) => {
   console.log("Connected to MySQL database")
 })
 
-const allowedOrigins = ["https://todo-ts-yuta4u.vercel.app/"]
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, true)
-      } else {
-        callback(new Error("Not allowed by CORS"))
-      }
-    },
-  })
-)
-
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(cors())
-// app.options("*", cors())
+app.use(cors())
+app.options("*", cors())
 
 app.get("/v1/todos", (req, res) => {
   const sql = "select * from todos"
