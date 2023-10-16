@@ -25,7 +25,7 @@ app.use(cors())
 app.options("*", cors())
 
 app.get("/v1/todos", (req, res) => {
-  const sql = "SELECT * FROM todos"
+  const sql = "select * from todos"
   db.query(sql, (err, result) => {
     if (err) throw err
     res.json({ todos: result })
@@ -34,8 +34,7 @@ app.get("/v1/todos", (req, res) => {
 
 app.post("/v1/todos", (req, res) => {
   const { title, deskripsi, date, check } = req.body
-  const sql =
-    "INSERT INTO todos (title, deskripsi, date, check) VALUES (?, ?, ?, ?)"
+  const sql = "insert into todos (title, deskripsi, date) VALUES (?, ?, ?)"
   db.query(sql, [title, deskripsi, date, check], (err, result) => {
     if (err) throw err
     res.status(201).json({ msg: "Berhasil post todos" })
