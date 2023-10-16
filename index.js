@@ -32,7 +32,7 @@ app.get("/todos", (req, res) => {
   })
 })
 
-app.post("/todos", (req, res) => {
+app.post("/posttodos", (req, res) => {
   const { title, deskripsi, date, check } = req.body
   const sql =
     "INSERT INTO todos (title, deskripsi, date, check) VALUES (?, ?, ?, ?)"
