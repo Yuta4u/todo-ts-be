@@ -32,7 +32,6 @@ app.get("/todos", (req, res) => {
   })
 })
 
-// Create a new item
 app.post("/todos", (req, res) => {
   const { feedbackId, feedback, rating } = req.body
   const sql =
@@ -40,6 +39,15 @@ app.post("/todos", (req, res) => {
   db.query(sql, [feedbackId, feedback, rating], (err, result) => {
     if (err) throw err
     res.status(201).json({ msg: "Berhasil post todos" })
+  })
+})
+
+app.delete("/todos/:id", (req, res) => {
+  const todosId = req.params.id
+  const sql = `delete from todos where id=${todosId}`
+  db.query(sql, (err, result) => {
+    if (err) throw err
+    res.status(201).json({ msg: "Berhasil delete todos" })
   })
 })
 
