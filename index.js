@@ -33,10 +33,10 @@ app.get("/todos", (req, res) => {
 })
 
 app.post("/todos", (req, res) => {
-  const { feedbackId, feedback, rating } = req.body
+  const { title, deskripsi, date, check } = req.body
   const sql =
     "INSERT INTO todos (title, deskripsi, date, check) VALUES (?, ?, ?, ?)"
-  db.query(sql, [feedbackId, feedback, rating], (err, result) => {
+  db.query(sql, [title, deskripsi, date, check], (err, result) => {
     if (err) throw err
     res.status(201).json({ msg: "Berhasil post todos" })
   })
