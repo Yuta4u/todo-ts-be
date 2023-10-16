@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 app.options("*", cors())
 
-app.get("/todos", (req, res) => {
+app.get("/v1/todos", (req, res) => {
   const sql = "SELECT * FROM todos"
   db.query(sql, (err, result) => {
     if (err) throw err
@@ -32,7 +32,7 @@ app.get("/todos", (req, res) => {
   })
 })
 
-app.post("/posttodos", (req, res) => {
+app.post("/v1/todos", (req, res) => {
   const { title, deskripsi, date, check } = req.body
   const sql =
     "INSERT INTO todos (title, deskripsi, date, check) VALUES (?, ?, ?, ?)"
@@ -42,7 +42,7 @@ app.post("/posttodos", (req, res) => {
   })
 })
 
-app.delete("/todos/:id", (req, res) => {
+app.delete("/v1/todos/:id", (req, res) => {
   const todosId = req.params.id
   const sql = `delete from todos where id=${todosId}`
   db.query(sql, (err, result) => {
