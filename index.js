@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
-// app.options("*", cors())
+app.options("*", cors())
 
 app.get("/v1/todos", (req, res) => {
   const sql = "select * from todos"
