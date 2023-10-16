@@ -17,7 +17,7 @@ db.connect((err) => {
   console.log("Connected to MySQL database")
 })
 
-const allowedOrigins = ["http://localhost:3000"]
+const allowedOrigins = ["https://todo-ts-rouge.vercel.app/"]
 
 app.use(
   cors({
